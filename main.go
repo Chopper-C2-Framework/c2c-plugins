@@ -1,12 +1,14 @@
 package main
 
-import "github.com/c2-chopper/core/plugins"
+import (
+	"fmt"
 
-type EvilPlugin struct {
-	args []interface{}
-}
+	"github.com/chopper-c2-framework/c2-chopper/core/plugins"
+)
 
-func (p *EvilPlugin) New() plugins.Plugin {
+type EvilPlugin plugins.Plugin
+
+func  New() plugins.Plugin {
 	return plugins.Plugin{
 		Name: "EvilPlugin",
 		Metadata: plugins.Metadata{
@@ -28,19 +30,20 @@ func (p *EvilPlugin) New() plugins.Plugin {
 }
 
 func (p *EvilPlugin) MetaInfo() *plugins.Metadata {
-	return &p.New().Metadata
+	return &p.Metadata
 }
 
 func (p *EvilPlugin) Info() *plugins.PluginInfo {
-	return &p.New().PluginInfo
+	return &p.PluginInfo
 }
 
 func (p *EvilPlugin) Options() map[string]string {
-	return p.New().PluginInfo.Options
+	return p.PluginInfo.Options
 }
 
 func (p *EvilPlugin) SetArgs(args ...interface{}) {
-	p.args = args
+	fmt.Println("Setting args")
+
 }
 
 func (p *EvilPlugin) Exploit(args ...interface{}) []byte {
