@@ -12,6 +12,30 @@ type EvilPlugin struct {
 	targetIp string
 }
 
+func New() plugins.IPlugin {
+	return &EvilPlugin{
+		Plugin: plugins.Plugin{
+			Metadata: plugins.Metadata{
+				Version:     "1.0",
+				Author:      "Evil Corp",
+				Tags:        []string{"evil", "malware"},
+				ReleaseDate: "2023-05-01",
+				Type:        1,
+				SourceLink:  "https://evilcorp.com/plugins/evil",
+				Description: "This plugin does evil things",
+			},
+			PluginInfo: plugins.PluginInfo{
+				Name: "EvilPlugin",
+				Options: map[string]string{
+					"target": "string",
+				},
+				ReturnType: "bytes",
+			},
+		},
+		targetIp: "",
+	}
+}
+
 func (p EvilPlugin) MetaInfo() *plugins.Metadata {
 	return &p.Metadata
 }
@@ -41,26 +65,4 @@ func (p EvilPlugin) Exploit(args ...interface{}) []byte {
 	// Do evil things with the args
 	fmt.Println("Do evil things to", p.targetIp)
 	return []byte(fmt.Sprint("EvilPlugin attacking ", p.targetIp))
-}
-
-var Instance EvilPlugin = EvilPlugin{
-	Plugin: plugins.Plugin{
-		Metadata: plugins.Metadata{
-			Version:     "1.0",
-			Author:      "Evil Corp",
-			Tags:        []string{"evil", "malware"},
-			ReleaseDate: "2023-05-01",
-			Type:        1,
-			SourceLink:  "https://evilcorp.com/plugins/evil",
-			Description: "This plugin does evil things",
-		},
-		PluginInfo: plugins.PluginInfo{
-			Name: "EvilPlugin",
-			Options: map[string]string{
-				"target": "string",
-			},
-			ReturnType: "bytes",
-		},
-	},
-	targetIp: "",
 }
