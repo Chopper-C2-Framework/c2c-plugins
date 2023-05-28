@@ -2,7 +2,7 @@ module github.com/chopper-c2-framework/c2c-plugins/RequireAgent
 
 go 1.20
 
-replace github.com/chopper-c2-framework/c2-chopper => ../../C2-Chopper
+replace github.com/chopper-c2-framework/c2-chopper => ../../c2-chopper
 
 require (
 	github.com/chopper-c2-framework/c2-chopper v0.0.0-20230430135601-052363bf299c
