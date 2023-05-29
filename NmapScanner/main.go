@@ -60,15 +60,15 @@ func (p NmapScanner) Options() map[string]string {
 	return p.PluginInfo.Options
 }
 
-func (p *NmapScanner) SetArgs(args ...interface{}) error {
+func (p *NmapScanner) SetArgs(args map[string]interface{}) error {
 	fmt.Println("Setting args")
 
-	arg1, ok := args[0].(string)
+	arg1, ok := args["target"].(string)
 	if !ok {
 		return errors.New("Bad first argument")
 	}
 
-	arg2, ok := args[1].(string)
+	arg2, ok := args["port_range"].(string)
 	if !ok {
 		p.port_range = "1-1000"
 	}

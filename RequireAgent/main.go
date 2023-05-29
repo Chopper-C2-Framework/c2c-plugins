@@ -58,6 +58,7 @@ func (p EvilPlugin) Options() map[string]string {
 
 func (p *EvilPlugin) SetArgs(args ...interface{}) error {
 	fmt.Println("Setting args")
+	// Outdated
 
 	arg1, ok := args[0].(string)
 	if !ok {
