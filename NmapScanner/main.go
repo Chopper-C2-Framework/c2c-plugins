@@ -29,7 +29,7 @@ func New(service services.ITaskService) plugins.IPlugin {
 			Metadata: plugins.Metadata{
 				Version:     "1.0",
 				Author:      "C2-Chopper",
-				Tags:        []string{"scanner", "info gathering"},
+				Tags:        []string{"scanner", "info-gathering"},
 				ReleaseDate: "2023-05-01",
 				Type:        plugins.InfoRetriever,
 				SourceLink:  "https://github.com/Chopper-C2-Framework",
@@ -84,6 +84,7 @@ func (p *NmapScanner) Exploit(Channel chan *entity.TaskResultModel, args ...inte
 	scanner, err := nmap.NewScanner(
 		nmap.WithTargets(p.targetIp),
 		nmap.WithPorts(p.port_range),
+		nmap.WithVersionAll(),
 	)
 	if err != nil {
 		return []byte(err.Error())
